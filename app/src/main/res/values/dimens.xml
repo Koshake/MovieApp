@@ -16,4 +16,7 @@
     <dimen name="item_movie_right_margin">20dp</dimen>
     <dimen name="item_bottom_margin">10dp</dimen>
     <dimen name="card_corner_radius">14dp</dimen>
+
+    <dimen name="rounded_text_view_width">40dp</dimen>
+    <dimen name="rounded_text_view_height">40dp</dimen>
 </resources>
