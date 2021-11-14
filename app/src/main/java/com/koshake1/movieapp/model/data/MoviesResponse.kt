@@ -1,4 +1,4 @@
-package com.koshake1.movieapp.model
+package com.koshake1.movieapp.model.data
 
 data class MoviesResponse (
     val pages : Int,
