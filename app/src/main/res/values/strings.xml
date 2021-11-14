@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MovieApp</string>
+
+    <string name="top_movies">Top Movies</string>
+    <string name="name">Name</string>
+    <string name="date">Date</string>
+    <string name="test_grade">100</string>
+
 </resources>

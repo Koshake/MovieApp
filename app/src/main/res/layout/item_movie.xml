@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:id="@+id/home_card_view"
+    android:layout_width="@dimen/item_movie_width"
+    android:layout_height="@dimen/item_movie_height"
+    android:layout_marginStart="@dimen/item_movie_right_margin"
+    android:layout_marginBottom="@dimen/item_bottom_margin"
+    app:cardCornerRadius="@dimen/card_corner_radius">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/squircleImageView"
+            app:layout_constraintHeight_percent="0.6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tool:layout_editor_absoluteX="0dp"
+            tool:layout_editor_absoluteY="0dp" />
+
+
+        <TextView
+            android:id="@+id/textview_grade"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:layout_marginStart="@dimen/medium_8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image"
+            android:background="@drawable/shape_oval"
+            tool:text="@string/test_grade"/>
+
+        <TextView
+            android:id="@+id/text_view_movie_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/HeaderTextView"
+            android:layout_marginStart="@dimen/medium_8"
+            android:layout_marginTop="@dimen/little"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textview_grade"
+            tool:text="@string/name"/>
+
+        <TextView
+            android:id="@+id/text_view_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/little"
+            android:layout_marginStart="@dimen/medium_8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_view_movie_name"
+            tool:text="@string/date"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

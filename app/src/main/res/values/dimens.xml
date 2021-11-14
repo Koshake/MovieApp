@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="little">4dp</dimen>
+    <dimen name="medium_8">8dp</dimen>
+    <dimen name="medium_16">16dp</dimen>
+    <dimen name="large">32dp</dimen>
+    <dimen name="medium_large">48dp</dimen>
+    <dimen name="extra_large">64dp</dimen>
+
+
+    <dimen name="recycler_margin_top">15dp</dimen>
+
+    <dimen name="item_movie_height">300dp</dimen>
+    <dimen name="item_movie_width">180dp</dimen>
+    <dimen name="item_movie_left_margin">20dp</dimen>
+    <dimen name="item_movie_right_margin">20dp</dimen>
+    <dimen name="item_bottom_margin">10dp</dimen>
+    <dimen name="card_corner_radius">14dp</dimen>
+</resources>
