@@ -6,7 +6,13 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiService {
-    @GET("3/movie/550")
+    @GET("movie/{id}")
+    fun getMovie(
+        @Query("id") id: Int,
+        @Query("api_key") apiKey: String,
+    ): Deferred<Movie>
+
+    @GET("discover/movie")
     fun getMovies(
         @Query("api_key") apiKey: String,
     ): Deferred<List<Movie>>
