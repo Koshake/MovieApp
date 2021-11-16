@@ -10,5 +10,6 @@
 
     <color name="item_gray">#4D000000</color>
     <color name="black_transparent">#6F000000</color>
+    <color name="green_transparent">#6F13FB21</color>
 
 </resources>

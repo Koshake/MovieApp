@@ -1,25 +1,24 @@
 package com.koshake1.movieapp.view.adapter
 
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
-import android.view.RoundedCorner
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import coil.api.load
-import coil.transform.RoundedCornersTransformation
 import com.koshake1.movieapp.R
 import com.koshake1.movieapp.databinding.ItemMovieBinding
 import com.koshake1.movieapp.model.data.Movie
+import com.koshake1.movieapp.model.repository.image.GlideImageLoader
+import com.koshake1.movieapp.model.repository.image.ImageLoader
 import com.koshake1.movieapp.util.POSTER_BASE_URL
 
-class MoviesAdapter(var items: List<Movie> = ArrayList()) : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
+class MoviesAdapter(var items: List<Movie> = ArrayList(),
+                    val imageLoader: ImageLoader<ImageView>
+) : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
 
     inner class MoviesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private val rvBinding = ItemMovieBinding.bind(itemView)
-
         fun bind(currentItem : Movie) {
             with (rvBinding) {
                 textViewMovieName.text = currentItem.original_title
@@ -27,12 +26,7 @@ class MoviesAdapter(var items: List<Movie> = ArrayList()) : RecyclerView.Adapter
                 textviewGrade.text = currentItem.vote_average.toString()
 
                 val url = POSTER_BASE_URL + currentItem.poster_path
-                image.load(url) {
-                    crossfade(true)
-                    kotlin.error(R.drawable.ic_load_error_vector)
-                    placeholder(R.drawable.ic_no_photo_vector)
-                    transformations(RoundedCornersTransformation())
-                }
+                imageLoader.loadImage(image, url)
             }
         }
     }
