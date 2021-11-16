@@ -7,7 +7,7 @@ import com.koshake1.movieapp.model.repository.MoviesRepository
 import com.koshake1.movieapp.util.API_KEY
 import kotlinx.coroutines.*
 
-class MoviesViewMode(private val repository: MoviesRepository)
+class MoviesViewModel(private val repository: MoviesRepository)
     : BaseViewModel<MoviesResponse>() {
 
     fun getMovies() {
