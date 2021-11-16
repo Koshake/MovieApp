@@ -16,10 +16,9 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/image"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/item_image_height"
             android:scaleType="centerCrop"
             app:shapeAppearanceOverlay="@style/squircleImageView"
-            app:layout_constraintHeight_percent="0.65"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

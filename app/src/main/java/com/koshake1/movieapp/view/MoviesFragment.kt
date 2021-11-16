@@ -10,6 +10,7 @@ import com.koshake1.movieapp.R
 import com.koshake1.movieapp.databinding.FragmentMoviesBinding
 import com.koshake1.movieapp.model.data.MoviesResponse
 import com.koshake1.movieapp.model.data.viewstate.MoviesViewState
+import com.koshake1.movieapp.view.adapter.MoviesAdapter
 import com.koshake1.movieapp.view_model.MoviesViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -25,6 +26,8 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
     private val moviesViewModel : MoviesViewModel by viewModel()
 
+    private var adapter : MoviesAdapter? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,6 +39,9 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        initAdapter()
+
         moviesViewModel.getMovies()
 
         moviesViewModel.stateLiveData.observe(viewLifecycleOwner) {
@@ -48,6 +54,14 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
         bindingNullable = null
     }
 
+    private fun initAdapter() {
+        if (adapter == null) {
+            adapter = MoviesAdapter()
+            binding.mainRecycler.adapter = adapter
+        }
+
+    }
+
     private fun renderData(state : MoviesViewState<MoviesResponse>) {
         when (state) {
             is MoviesViewState.Success -> renderSuccess(state.data)
@@ -57,7 +71,11 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
     }
 
     private fun renderSuccess(movies : MoviesResponse) {
-
+        hideLoading()
+        adapter?.let {
+            it.clear()
+            it.fillList(movies.results)
+        }
     }
 
     private fun renderError(error : Throwable) {
