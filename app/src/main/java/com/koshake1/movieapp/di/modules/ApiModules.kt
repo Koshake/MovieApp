@@ -1,11 +1,14 @@
 package com.koshake1.movieapp.di.modules
 
+import android.widget.ImageView
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.koshake1.movieapp.api.ApiService
 import com.koshake1.movieapp.model.data_sources.RemoteDataSource
 import com.koshake1.movieapp.model.data_sources.RemoteDataSourceImpl
 import com.koshake1.movieapp.model.repository.MoviesRepository
 import com.koshake1.movieapp.model.repository.MoviesRepositoryImpl
+import com.koshake1.movieapp.model.repository.image.GlideImageLoader
+import com.koshake1.movieapp.model.repository.image.ImageLoader
 import com.koshake1.movieapp.view_model.MoviesViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -33,6 +36,10 @@ val retrofitModule = module {
 
 val dataSourceModule = module {
     single<RemoteDataSource> { RemoteDataSourceImpl(get()) }
+}
+
+val imageModule = module {
+    single<ImageLoader<ImageView>> { GlideImageLoader() }
 }
 
 val repositoryModule = module {

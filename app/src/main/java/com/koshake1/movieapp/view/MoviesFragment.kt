@@ -4,14 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.koshake1.movieapp.R
 import com.koshake1.movieapp.databinding.FragmentMoviesBinding
 import com.koshake1.movieapp.model.data.MoviesResponse
 import com.koshake1.movieapp.model.data.viewstate.MoviesViewState
+import com.koshake1.movieapp.model.repository.image.ImageLoader
 import com.koshake1.movieapp.view.adapter.MoviesAdapter
 import com.koshake1.movieapp.view_model.MoviesViewModel
+import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MoviesFragment : Fragment(R.layout.fragment_movies) {
@@ -25,6 +28,8 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
     private val binding get() = bindingNullable!!
 
     private val moviesViewModel : MoviesViewModel by viewModel()
+
+    private val imageLoader: ImageLoader<ImageView> by inject()
 
     private var adapter : MoviesAdapter? = null
 
@@ -56,7 +61,7 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
     private fun initAdapter() {
         if (adapter == null) {
-            adapter = MoviesAdapter()
+            adapter = MoviesAdapter(imageLoader = imageLoader)
             binding.mainRecycler.adapter = adapter
         }
 

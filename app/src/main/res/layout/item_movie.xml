@@ -16,15 +16,15 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/image"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/item_image_height"
+            android:layout_height="0dp"
             android:scaleType="centerCrop"
             app:shapeAppearanceOverlay="@style/squircleImageView"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.65"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tool:layout_editor_absoluteX="0dp"
             tool:layout_editor_absoluteY="0dp" />
-
 
         <TextView
             android:id="@+id/textview_grade"
@@ -32,6 +32,7 @@
             android:layout_height="@dimen/rounded_text_view_height"
             android:gravity="center"
             android:layout_marginStart="@dimen/medium_8"
+            android:layout_marginTop="@dimen/little_2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/image"
             android:background="@drawable/shape_oval"

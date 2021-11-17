@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="little_2">2dp</dimen>
     <dimen name="little">4dp</dimen>
     <dimen name="medium_8">8dp</dimen>
     <dimen name="medium_16">16dp</dimen>
@@ -18,6 +19,6 @@
     <dimen name="item_bottom_margin">10dp</dimen>
     <dimen name="card_corner_radius">14dp</dimen>
 
-    <dimen name="rounded_text_view_width">40dp</dimen>
-    <dimen name="rounded_text_view_height">40dp</dimen>
+    <dimen name="rounded_text_view_width">34dp</dimen>
+    <dimen name="rounded_text_view_height">34dp</dimen>
 </resources>
