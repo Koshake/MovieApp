@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/image_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:foreground="@color/black_transparent"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/image_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tool:src="@drawable/movie_pic" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/textView_title"
+        style="@style/OverviewHeaderTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/movie_title"
+        app:layout_constraintBottom_toBottomOf="@id/image_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textview_overview_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/HeaderTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_layout"
+        android:layout_marginTop="@dimen/medium_8"
+        android:layout_marginLeft="@dimen/left_margin"
+        android:text="@string/overview_text"/>
+
+    <TextView
+        android:id="@+id/textview_overview_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/DescriptionTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textview_overview_header"
+        android:layout_marginTop="@dimen/medium_8"
+        android:layout_marginLeft="@dimen/left_margin"
+        android:text="@string/overview_text"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

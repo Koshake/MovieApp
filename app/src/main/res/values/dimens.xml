@@ -21,4 +21,6 @@
 
     <dimen name="rounded_text_view_width">34dp</dimen>
     <dimen name="rounded_text_view_height">34dp</dimen>
+
+    <dimen name="left_margin">@dimen/medium_16</dimen>
 </resources>
