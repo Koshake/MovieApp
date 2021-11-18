@@ -10,6 +10,7 @@ import com.koshake1.movieapp.model.repository.MoviesRepositoryImpl
 import com.koshake1.movieapp.model.repository.image.GlideImageLoader
 import com.koshake1.movieapp.model.repository.image.ImageLoader
 import com.koshake1.movieapp.view_model.MoviesViewModel
+import com.koshake1.movieapp.view_model.OverviewViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.viewmodel.dsl.viewModel
@@ -48,4 +49,5 @@ val repositoryModule = module {
 
 val viewModelModule = module {
     viewModel { MoviesViewModel(get()) }
+    viewModel { OverviewViewModel(get()) }
 }

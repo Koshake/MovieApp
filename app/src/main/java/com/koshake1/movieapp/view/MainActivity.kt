@@ -3,6 +3,9 @@ package com.koshake1.movieapp.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.koshake1.movieapp.R
 import com.koshake1.movieapp.databinding.ActivityMainBinding
 
@@ -14,11 +17,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val view = binding.root
         setContentView(view)
-
-        navigateTo(MoviesFragment.newInstance())
+        //navigateTo()
     }
 
-    fun navigateTo(fragment: Fragment) {
+    private fun navigateTo(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.container, fragment)
             .addToBackStack("notes")

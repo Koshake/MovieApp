@@ -13,7 +13,8 @@ import com.koshake1.movieapp.model.repository.image.ImageLoader
 import com.koshake1.movieapp.util.POSTER_BASE_URL
 
 class MoviesAdapter(var items: List<Movie> = ArrayList(),
-                    val imageLoader: ImageLoader<ImageView>
+                    val imageLoader: ImageLoader<ImageView>,
+                    val clickListener: OnListItemClickListener
 ) : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
 
     inner class MoviesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -27,6 +28,8 @@ class MoviesAdapter(var items: List<Movie> = ArrayList(),
 
                 val url = POSTER_BASE_URL + currentItem.poster_path
                 imageLoader.loadImage(image, url)
+
+                image.setOnClickListener { clickListener.onItemClick(currentItem.id!!) }
             }
         }
     }

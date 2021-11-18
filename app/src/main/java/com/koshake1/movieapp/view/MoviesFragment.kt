@@ -7,15 +7,21 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.koshake1.movieapp.R
 import com.koshake1.movieapp.databinding.FragmentMoviesBinding
+import com.koshake1.movieapp.databinding.FragmentOverviewBinding
 import com.koshake1.movieapp.model.data.MoviesResponse
 import com.koshake1.movieapp.model.data.viewstate.MoviesViewState
 import com.koshake1.movieapp.model.repository.image.ImageLoader
 import com.koshake1.movieapp.view.adapter.MoviesAdapter
+import com.koshake1.movieapp.view.adapter.OnListItemClickListener
 import com.koshake1.movieapp.view_model.MoviesViewModel
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
+import kotlin.concurrent.fixedRateTimer
 
 class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
@@ -52,6 +58,7 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
         moviesViewModel.stateLiveData.observe(viewLifecycleOwner) {
             renderData(it)
         }
+
     }
 
     override fun onDestroy() {
@@ -61,10 +68,17 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
     private fun initAdapter() {
         if (adapter == null) {
-            adapter = MoviesAdapter(imageLoader = imageLoader)
+            adapter = MoviesAdapter(imageLoader = imageLoader, clickListener = object
+                : OnListItemClickListener {
+                override fun onItemClick(id: String) {
+                    val bundle = Bundle()
+                    bundle.putString("key", id)
+                    findNavController().navigate(R.id.action_moviesFragment_to_overviewFragment
+                        , bundle)
+                }
+            })
             binding.mainRecycler.adapter = adapter
         }
-
     }
 
     private fun renderData(state : MoviesViewState<MoviesResponse>) {

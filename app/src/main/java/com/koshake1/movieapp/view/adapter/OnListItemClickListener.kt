@@ -1,5 +1,5 @@
 package com.koshake1.movieapp.view.adapter
 
 interface OnListItemClickListener {
-    fun onItemClick()
+    fun onItemClick(id : String)
 }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/moviesFragment">
+
+    <fragment
+        android:id="@+id/moviesFragment"
+        android:name="com.koshake1.movieapp.view.MoviesFragment"
+        android:label="MoviesFragment" >
+        <action
+            android:id="@+id/action_moviesFragment_to_overviewFragment"
+            app:destination="@id/overviewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/overviewFragment"
+        android:name="com.koshake1.movieapp.view.OverviewFragment"
+        android:label="OverviewFragment" >
+        <argument
+            android:name="movieId"
+            app:argType="string" />
+    </fragment>
+</navigation>
