@@ -19,15 +19,11 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class OverviewFragment : Fragment(R.layout.fragment_overview) {
 
-    companion object {
-        fun newInstance() = OverviewFragment()
-    }
+    private var bindingNullable: FragmentOverviewBinding? = null
+    private val binding: FragmentOverviewBinding
+        get() = bindingNullable!!
 
-    private var bindingNullable : FragmentOverviewBinding? = null
-    private val binding : FragmentOverviewBinding
-    get() = bindingNullable!!
-
-    private val overviewViewModel : OverviewViewModel by viewModel()
+    private val overviewViewModel: OverviewViewModel by viewModel()
 
     private val imageLoader: ImageLoader<ImageView> by inject()
 
@@ -44,7 +40,7 @@ class OverviewFragment : Fragment(R.layout.fragment_overview) {
         super.onViewCreated(view, savedInstanceState)
         val id = arguments?.getString("key")
         id?.let { overviewViewModel.getMovie(it) }
-        overviewViewModel.stateLiveData.observe(viewLifecycleOwner){
+        overviewViewModel.stateLiveData.observe(viewLifecycleOwner) {
             renderData(it)
         }
     }
@@ -54,7 +50,7 @@ class OverviewFragment : Fragment(R.layout.fragment_overview) {
         bindingNullable = null
     }
 
-    private fun renderData(state : MoviesViewState<Movie>) {
+    private fun renderData(state: MoviesViewState<Movie>) {
         when (state) {
             is MoviesViewState.Success -> renderSuccess(state.data)
             is MoviesViewState.Error -> renderError(state.error)
@@ -62,7 +58,7 @@ class OverviewFragment : Fragment(R.layout.fragment_overview) {
         }
     }
 
-    private fun renderSuccess(movie : Movie) {
+    private fun renderSuccess(movie: Movie) {
         hideLoading()
         binding.textViewTitle.text = movie.original_title
         binding.textviewOverviewText.text = movie.overview
@@ -70,7 +66,7 @@ class OverviewFragment : Fragment(R.layout.fragment_overview) {
         imageLoader.loadImage(binding.imageTitle, url)
     }
 
-    private fun renderError(error : Throwable) {
+    private fun renderError(error: Throwable) {
         error.message?.let { showMessage(it) }
     }
 
@@ -83,6 +79,7 @@ class OverviewFragment : Fragment(R.layout.fragment_overview) {
             binding.overviewProgress.hide()
         }
     }
+
     private fun showMessage(message: String) {
         Toast.makeText(
             requireContext(),
@@ -91,7 +88,7 @@ class OverviewFragment : Fragment(R.layout.fragment_overview) {
         ).show()
     }
 
-    private fun setLoading(loading : Boolean) {
+    private fun setLoading(loading: Boolean) {
         if (loading) {
             showLoading()
         } else {

@@ -12,7 +12,6 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.koshake1.movieapp.R
 import com.koshake1.movieapp.databinding.FragmentMoviesBinding
-import com.koshake1.movieapp.databinding.FragmentOverviewBinding
 import com.koshake1.movieapp.model.data.MoviesResponse
 import com.koshake1.movieapp.model.data.viewstate.MoviesViewState
 import com.koshake1.movieapp.model.repository.image.ImageLoader
@@ -21,23 +20,18 @@ import com.koshake1.movieapp.view.adapter.OnListItemClickListener
 import com.koshake1.movieapp.view_model.MoviesViewModel
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
-import kotlin.concurrent.fixedRateTimer
 
 class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
-    companion object {
-        fun newInstance() = MoviesFragment()
-    }
-
-    private var bindingNullable : FragmentMoviesBinding? = null
+    private var bindingNullable: FragmentMoviesBinding? = null
 
     private val binding get() = bindingNullable!!
 
-    private val moviesViewModel : MoviesViewModel by viewModel()
+    private val moviesViewModel: MoviesViewModel by viewModel()
 
     private val imageLoader: ImageLoader<ImageView> by inject()
 
-    private var adapter : MoviesAdapter? = null
+    private var adapter: MoviesAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -73,15 +67,16 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
                 override fun onItemClick(id: String) {
                     val bundle = Bundle()
                     bundle.putString("key", id)
-                    findNavController().navigate(R.id.action_moviesFragment_to_overviewFragment
-                        , bundle)
+                    findNavController().navigate(
+                        R.id.action_moviesFragment_to_overviewFragment, bundle
+                    )
                 }
             })
-            binding.mainRecycler.adapter = adapter
         }
+        binding.mainRecycler.adapter = adapter
     }
 
-    private fun renderData(state : MoviesViewState<MoviesResponse>) {
+    private fun renderData(state: MoviesViewState<MoviesResponse>) {
         when (state) {
             is MoviesViewState.Success -> renderSuccess(state.data)
             is MoviesViewState.Error -> renderError(state.error)
@@ -89,7 +84,7 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
         }
     }
 
-    private fun renderSuccess(movies : MoviesResponse) {
+    private fun renderSuccess(movies: MoviesResponse) {
         hideLoading()
         adapter?.let {
             it.clear()
@@ -97,11 +92,11 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
         }
     }
 
-    private fun renderError(error : Throwable) {
+    private fun renderError(error: Throwable) {
         error.message?.let { showMessage(it) }
     }
 
-    private fun setLoading(loading : Boolean) {
+    private fun setLoading(loading: Boolean) {
         if (loading) {
             showLoading()
         } else {
